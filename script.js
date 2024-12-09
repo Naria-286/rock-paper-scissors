@@ -16,6 +16,20 @@ function getComputerChoice () {
     }
 }
 function getHumanChoice () {
-    const humanChoice = prompt("Your Choice: ")
-    return humanChoice
+    // let humanChoice = prompt("Your Choice: ")
+    let humanChoice = "RoCk"
+    return humanChoice.toLowerCase()
 }
+
+function checkWinner (a,b) {
+
+}
+
+function playRound(humanChoice,computerChoice) {
+    return humanChoice + " " + computerChoice
+}
+
+const humanSelection = getHumanChoice()
+const computerSelection = getComputerChoice()
+
+console.log(playRound(humanSelection,computerSelection) )
