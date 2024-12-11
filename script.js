@@ -52,7 +52,7 @@ function playGame () {
     function playRound(humanChoice,computerChoice) {
         humanChoice = humanChoice.toLowerCase()
         console.log(checkWinner(humanChoice,computerChoice))
-        console.log(`HUMAN:${humanChoice} COMPUTER:${computerChoice} SCORE:${humanScore}-${computerScore}`)
+        // console.log(`HUMAN:${humanChoice} COMPUTER:${computerChoice} SCORE:${humanScore}-${computerScore}`)
     }
 
 
