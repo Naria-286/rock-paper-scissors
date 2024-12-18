@@ -12,16 +12,26 @@ function playGame () {
         }
     }
 
-    //Temp "rock" placeholder
-    function getHumanChoice () {
-        let humanChoice = prompt("Your Choice: ")
-        // let humanChoice = "RoCk"
-        humanSelection = humanChoice
+    function getHumanChoice (e) {
+        let selectionID = e.target.id
+        switch(selectionID) {
+            case("rockBtn"):
+            console.log("rock")
+                return "rock"
+            case("paperBtn"):
+            console.log("paper")
+                return "paper"
+
+            case("scissorBtn"):
+                console.log("scissor")
+                return "scissor"
+        }
     }
 
     function checkWinner (humanChoice, computerChoice) {
         if (humanChoice === computerChoice) {
             return "DRAW!"
+        // Human scissors
         } else if (humanChoice === "scissors"){
             if (computerChoice === "rock"){
                 computerScore++
@@ -30,6 +40,7 @@ function playGame () {
                 humanScore++
                 return "YOU WIN: your scissors cut paper"
             }
+        // Human Paper
         } else if (humanChoice === "paper"){
             if (computerChoice === "scissors"){
                 computerScore++
@@ -38,6 +49,7 @@ function playGame () {
                 humanScore++
                 return "YOU WIN: your paper wraps the rock"
             }
+        // Human Rock
         } else if (humanChoice === "rock"){
             if (computerChoice === "paper"){
                 computerScore++
@@ -51,35 +63,26 @@ function playGame () {
 
     function playRound(humanChoice,computerChoice) {
         humanChoice = humanChoice.toLowerCase()
-        console.log(checkWinner(humanChoice,computerChoice))
+        console.l
+        //Temp "rock" placeholderog(checkWinner(humanChoice,computerChoice))
         // console.log(`HUMAN:${humanChoice} COMPUTER:${computerChoice} SCORE:${humanScore}-${computerScore}`)
     }
 
-
+    const selectionList = document.querySelectorAll("button")
+    selectionList.forEach((button) => {
+        button.addEventListener("click", getHumanChoice)
+    })
+// structure of playing a round 
     let humanScore = 0;
     let computerScore = 0;
 
     let humanSelection, computerSelection
 
-    getHumanChoice()
-    getComputerChoice()
-    playRound(humanSelection,computerSelection)
-    //2
-    getHumanChoice()
-    getComputerChoice()
-    playRound(humanSelection,computerSelection)
-    //3
-    getHumanChoice()
-    getComputerChoice()
-    playRound(humanSelection,computerSelection)
-    //4
-    getHumanChoice()
-    getComputerChoice()
-    playRound(humanSelection,computerSelection)
-    //5
-    getHumanChoice()
-    getComputerChoice()
-    playRound(humanSelection,computerSelection)
+    
+    // getHumanChoice()
+    // getComputerChoice()
+    // playRound(humanSelection,computerSelection)
+ 
 }
 
 playGame();
