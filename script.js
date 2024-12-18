@@ -4,33 +4,28 @@ function playGame () {
         let random = Math.floor(Math.random() * 3) + 1
         switch(random) {
             case 1:
-                computerSelection = "rock"
+                return "rock"
             case 2:
-                computerSelection = "paper"
+                return "paper"
             case 3:
-                computerSelection = "scissors"
+                return "scissors"
         }
     }
 
-    function getHumanChoice (e) {
-        let selectionID = e.target.id
-        switch(selectionID) {
+    function getHumanChoice (id) {
+        switch(id) {
             case("rockBtn"):
-            console.log("rock")
                 return "rock"
             case("paperBtn"):
-            console.log("paper")
                 return "paper"
-
             case("scissorBtn"):
-                console.log("scissor")
                 return "scissor"
         }
     }
 
     function checkWinner (humanChoice, computerChoice) {
         if (humanChoice === computerChoice) {
-            return "DRAW!"
+            return "--- DRAW! ---"
         // Human scissors
         } else if (humanChoice === "scissors"){
             if (computerChoice === "rock"){
@@ -61,24 +56,27 @@ function playGame () {
         }
     }
 
-    function playRound(humanChoice,computerChoice) {
-        humanChoice = humanChoice.toLowerCase()
-        console.l
-        //Temp "rock" placeholderog(checkWinner(humanChoice,computerChoice))
-        // console.log(`HUMAN:${humanChoice} COMPUTER:${computerChoice} SCORE:${humanScore}-${computerScore}`)
+    function playRound(e) {
+        let selectionID = e.target.id
+        let humanSelection = getHumanChoice(selectionID)
+
+        let computerSelection = getComputerChoice()
+        
+        console.log(`H:${humanSelection} C:${computerSelection}`)
+        // humanChoice = humanChoice.toLowerCase()
     }
 
     const selectionList = document.querySelectorAll("button")
     selectionList.forEach((button) => {
-        button.addEventListener("click", getHumanChoice)
+        button.addEventListener("click", playRound)
     })
-// structure of playing a round 
+
+    const messageDisplay = document.querySelector("#message")
+    
+    // Play Game Structure
     let humanScore = 0;
     let computerScore = 0;
 
-    let humanSelection, computerSelection
-
-    
     // getHumanChoice()
     // getComputerChoice()
     // playRound(humanSelection,computerSelection)
