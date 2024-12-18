@@ -62,12 +62,18 @@ function playGame () {
     let computerScore = 0;
 
     function playRound(e) {
-        // let humanSelection = getHumanChoice(e)
-        let humanSelection = e
+        let humanSelection = getHumanChoice(e)
         let computerSelection = getComputerChoice()
         
         let message = checkWinner(humanSelection,computerSelection)
-        messageDisplay.textContent = `Score is:${humanScore}-${computerScore} AVG:${(computerScore/humanScore).toFixed(3)}`
+        if (humanScore >= 5){ 
+            message = "HUMAN WINS GAME"
+        } 
+        if (computerScore >= 5){
+            message = "COMPUTER WINS GAME"
+        }
+        
+        messageDisplay.textContent = `Score: ${humanScore}-${computerScore} ${message}`
         // console.log(`H:${humanSelection} C:${computerSelection}`)
     }
 
@@ -78,18 +84,6 @@ function playGame () {
         button.addEventListener("click", playRound)
     })
     
-    const macroPlay = document.querySelector("#macro")
-    macroPlay.addEventListener("click", (e) => {
-        for (let i = 0; i < 1000; i++) {
-            let humanValue = ''
-            if ( i % 2 === 0){
-                humanValue = "rock"
-            } else {
-                humanValue = "scissors"
-            }
-            playRound(humanValue)
-        }
-    })
 }
 
 playGame();
