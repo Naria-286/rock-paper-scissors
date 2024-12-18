@@ -12,7 +12,8 @@ function playGame () {
         }
     }
 
-    function getHumanChoice (id) {
+    function getHumanChoice (e) {
+        let id = e.target.id
         switch(id) {
             case("rockBtn"):
                 return "rock"
@@ -27,7 +28,7 @@ function playGame () {
         if (humanChoice === computerChoice) {
             return "--- DRAW! ---"
         // Human scissors
-        } else if (humanChoice === "scissors"){
+        } else if (humanChoice === "scissor"){
             if (computerChoice === "rock"){
                 computerScore++
                 return "YOU LOSE: your scissors gets crushed by rock"
@@ -56,31 +57,39 @@ function playGame () {
         }
     }
 
-    function playRound(e) {
-        let selectionID = e.target.id
-        let humanSelection = getHumanChoice(selectionID)
+    const messageDisplay = document.querySelector("#message")
+    let humanScore = 0;
+    let computerScore = 0;
 
+    function playRound(e) {
+        // let humanSelection = getHumanChoice(e)
+        let humanSelection = e
         let computerSelection = getComputerChoice()
         
-        console.log(`H:${humanSelection} C:${computerSelection}`)
-        // humanChoice = humanChoice.toLowerCase()
+        let message = checkWinner(humanSelection,computerSelection)
+        messageDisplay.textContent = `Score is:${humanScore}-${computerScore} AVG:${(computerScore/humanScore).toFixed(3)}`
+        // console.log(`H:${humanSelection} C:${computerSelection}`)
     }
 
+
+    // BUTTONS
     const selectionList = document.querySelectorAll("button")
     selectionList.forEach((button) => {
         button.addEventListener("click", playRound)
     })
-
-    const messageDisplay = document.querySelector("#message")
     
-    // Play Game Structure
-    let humanScore = 0;
-    let computerScore = 0;
-
-    // getHumanChoice()
-    // getComputerChoice()
-    // playRound(humanSelection,computerSelection)
- 
+    const macroPlay = document.querySelector("#macro")
+    macroPlay.addEventListener("click", (e) => {
+        for (let i = 0; i < 1000; i++) {
+            let humanValue = ''
+            if ( i % 2 === 0){
+                humanValue = "rock"
+            } else {
+                humanValue = "scissors"
+            }
+            playRound(humanValue)
+        }
+    })
 }
 
 playGame();
